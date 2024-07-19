@@ -1,14 +1,19 @@
 import streamlit as st
+from ai_image import ai_image 
+from ai_text import ai_text
 
-# streamlit document를 활용하여 예제가 아닌 나만의 것으로 만들어 보았다. 
+st.title("제품 홍보 포스터 생성기")
+st.subheader("당신의 제품을 홍보하고 포스터로 만들어드립니다.",divider="rainbow")
+item = st.chat_input("어떤 제품을 홍보해 드릴까요?")
+if item:
+    with st.spinner("생성 중입니다"):
+        image = ai_image(item)
+        text = ai_text(item)
+        with st.chat_message("ai"):
+            st.image(image)
+            st.text(text)
 
-st.title("동물 이미지 찾아 주기 🐯")
-st.subheader("영어로 입력해 주세요.",divider="rainbow")
-animal = st.chat_input("어떤 동물을 찾아드릴까요?")
-if animal:
-    with st.chat_message("ai"):
-        st.text("잠시만 기다려 주세요.")
-        st.image(f"https://edu.spartacodingclub.kr/random/?{animal}")
-        st.text(f"예쁜{animal}가 나왔습니다.")
+    
+
         
         
